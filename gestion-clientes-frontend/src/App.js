@@ -8,14 +8,14 @@ import { Route } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-     <BrowserRouter>
-     <div className='container'>
-      <Routes>
-        <Route path="/" element={<AgregarClientes />}></Route>
-        <Route path="/ListaClientes" element={<ListaClientes />}></Route>
-      </Routes>
-     </div>
-     </BrowserRouter>
+      <BrowserRouter>
+        <div className='container'>
+          <Routes>
+            <Route path="/" element={<AgregarClientes />}></Route>
+            <Route path="/ListaClientes" element={<ListaClientes />}></Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from "react";
+import ClienteServicio from "../Servicios/ClienteServicio";
 
 const AgregarClientes = () => {
+    const [clientes, setClientes] = useState([]);
+
+    useEffect(() => {
+        ClienteServicio.crearCliente(clientes)
+            .then(response => {
+                console.log("Datos desde Axios:", response.data);
+            })
+            .catch(error => {
+                console.error("Error al conectar con el servidor:", error);
+            });
+            
+    })
     return (
         <div>
             <h1>Agregar Clientes</h1>
