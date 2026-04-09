@@ -1,23 +1,38 @@
 import React, { useState, useEffect } from "react";
 import ClienteServicio from "../Servicios/ClienteServicio";
+import { useNavigate } from "react-router-dom";
 
 const AgregarClientes = () => {
-    const [clientes, setClientes] = useState([]);
+    const [cliente, setCliente] = useState({
+        nombre: '',
+        apellido: '',
+        email: '',
+        telefono: '',
+        direccion: '',
+        fecha_nacimiento: ''
+    });
+    const navigate = useNavigate();
+    const manejarCambio = (e) => {
+        const { name, value } = e.target;
+        setCliente({ ...cliente, [name]: value });
+    };
+    const guardarCliente = (e) => {
+        e.preventDefault();
 
-    useEffect(() => {
-        ClienteServicio.crearCliente(clientes)
+        ClienteServicio.crearCliente(cliente)
             .then(response => {
-                console.log("Datos desde Axios:", response.data);
+                console.log("Cliente guardado con éxito:", response.data);
+                navigate('/clientes');
             })
             .catch(error => {
-                console.error("Error al conectar con el servidor:", error);
+                console.error("Error al guardar:", error);
+                alert("Hubo un error al guardar el cliente");
             });
-            
-    })
+            };
     return (
         <div>
             <h1>Agregar Clientes</h1>
-            <form>
+            <form onSubmit={guardarCliente}>
                 <div className="row">
 
                     <div className="col-md-4 mb-3">
@@ -59,6 +74,7 @@ const AgregarClientes = () => {
             </form>
         </div>
     );
+
 };
 
 export default AgregarClientes;
