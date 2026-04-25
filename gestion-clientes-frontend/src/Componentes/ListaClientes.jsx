@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { EditFilled } from '@ant-design/icons';
 import ClienteServicio from "../Servicios/ClienteServicio";
+import { Link } from "react-router-dom";
 
 const ListaClientes = () => {
     const [clientes, setClientes] = useState([]);
@@ -24,6 +26,7 @@ const ListaClientes = () => {
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Email</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +36,11 @@ const ListaClientes = () => {
                             <td>{cliente.nombre}</td>
                             <td>{cliente.apellido}</td>
                             <td>{cliente.email}</td>
+                            <td><Link 
+                                    to={`/EditarClientes/${cliente.id}`} >
+                                    <EditFilled />
+                                </Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

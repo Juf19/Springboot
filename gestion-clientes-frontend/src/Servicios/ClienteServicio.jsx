@@ -15,8 +15,11 @@ class ClienteServicio {
     crearCliente(cliente) {
         return clienteAxios.post("/clientes", cliente);
     }
+    obtenerClientePorId(id) {
+        return clienteAxios.get(`/clientes/${id}`);
+    }
 
-    editarCliente(cliente) {
+    editarCliente(id, cliente) {
         return clienteAxios.put(`/clientes/${id}`, cliente);
     }
 }

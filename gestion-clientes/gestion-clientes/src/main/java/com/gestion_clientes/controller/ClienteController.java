@@ -35,6 +35,12 @@ public class ClienteController {
         Cliente nuevoCliente = clienteRepository.save(cliente);
         return new ResponseEntity<>(nuevoCliente, HttpStatus.CREATED);
     }
+    @GetMapping("/clientes/{id}")
+    public ResponseEntity<Cliente> obtenerClientePorId(@PathVariable Long id) {
+    Cliente cliente = clienteRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("No existe el cliente con el ID: " + id));
+    return ResponseEntity.ok(cliente);
+}
 
     @PutMapping("clientes/{id}")
     ResponseEntity<Cliente> actualizarCliente(@PathVariable Long id, @RequestBody Cliente detallesCliente) {
